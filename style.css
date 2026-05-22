@@ -1,0 +1,112 @@
+body {
+  margin: 0;
+  font-family: system-ui, Arial;
+  background: #0f0f12;
+  color: white;
+}
+
+/* main shell */
+#browser {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* TOP BAR */
+#topbar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 10px;
+  background: rgba(30, 30, 40, 0.85);
+  backdrop-filter: blur(12px);
+
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+/* logo circle */
+#logo {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #6cf, #2a2a3a);
+  box-shadow: 0 0 15px rgba(100,150,255,0.4);
+}
+
+/* URL bar */
+#url {
+  flex: 1;
+  padding: 10px 12px;
+
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.1);
+
+  background: #15151c;
+  color: white;
+
+  outline: none;
+}
+
+/* buttons */
+button {
+  padding: 10px 12px;
+  border-radius: 10px;
+
+  border: none;
+  cursor: pointer;
+
+  background: #2a2a38;
+  color: white;
+
+  transition: 0.2s;
+}
+
+button:hover {
+  background: #3a3a52;
+  transform: translateY(-1px);
+}
+
+/* TABS */
+#tabs {
+  display: flex;
+  gap: 8px;
+
+  padding: 8px;
+  background: #14141a;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.tab {
+  padding: 6px 12px;
+  border-radius: 999px;
+
+  background: #2a2a33;
+  cursor: pointer;
+
+  font-size: 13px;
+
+  transition: 0.2s;
+}
+
+.tab:hover {
+  background: #3a3a48;
+}
+
+.tab.active {
+  background: #5a7cff;
+  box-shadow: 0 0 12px rgba(90,124,255,0.4);
+}
+
+/* CONTENT AREA */
+#content {
+  flex: 1;
+  background: #111;
+}
+
+iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: white;
+}
