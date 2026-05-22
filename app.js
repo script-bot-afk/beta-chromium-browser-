@@ -1,74 +1,65 @@
-let tabs = [];
-let active = 0;
+const state = {
+  tabs: ["https://www.google.com"],
+  active: 0
+};
 
-const blocked = [
-  "doubleclick.net",
-  "googlesyndication.com",
-  "adservice",
-  "popads"
-];
-
-function newTab(url = "https://www.google.com") {
-  tabs.push(url);
-  active = tabs.length - 1;
-  render();
-  load();
-}
-
+// ---------- NAVIGATION ----------
 function go() {
-  let url = document.getElementById("url").value;
-  if (!url.startsWith("http")) url = "https://" + url;
-
-  tabs[active] = url;
-  load();
-  render();
+  const input = document.getElementById("url").value;
+  navigate(input);
 }
 
-function load() {
-  const iframe = document.getElementById("view");
-  const url = tabs[active];
+function navigate(url) {
+  if (!url) return;
 
-  if (isBlocked(url)) {
-    iframe.srcdoc = `
-      <body style="background:#111;color:white;
-      display:flex;align-items:center;justify-content:center;
-      font-family:Arial;">
-        Blocked by filter system
-      </body>`;
-    return;
+  if (!url.startsWith("http")) {
+    url = "https://" + url;
   }
 
-  iframe.src = url;
+  state.tabs[state.active] = url;
+
+  load();
+  renderTabs();
 }
 
-function isBlocked(url) {
-  return blocked.some(b => url.includes(b));
+// ---------- LOAD PAGE ----------
+function load() {
+  const iframe = document.getElementById("view");
+  iframe.src = state.tabs[state.active];
 }
 
-function render() {
+// ---------- TABS ----------
+function newTab() {
+  state.tabs.push("https://www.google.com");
+  state.active = state.tabs.length - 1;
+
+  load();
+  renderTabs();
+}
+
+function switchTab(index) {
+  state.active = index;
+  load();
+  renderTabs();
+}
+
+function renderTabs() {
   const bar = document.getElementById("tabs");
   bar.innerHTML = "";
 
-  tabs.forEach((t, i) => {
-    const el = document.createElement("div");
-    el.className = "tab" + (i === active ? " active" : "");
-    el.innerText = "Tab " + (i + 1);
+  state.tabs.forEach((url, i) => {
+    const tab = document.createElement("div");
+    tab.className = "tab" + (i === state.active ? " active" : "");
+    tab.textContent = "Tab " + (i + 1);
 
-    el.onclick = () => {
-      active = i;
-      render();
-      load();
-    };
+    tab.onclick = () => switchTab(i);
 
-    bar.appendChild(el);
+    bar.appendChild(tab);
   });
 }
 
-// popup block simulation
-window.open = function(url) {
-  if (isBlocked(url)) return;
-  alert("Popup blocked: " + url);
+// ---------- INIT ----------
+window.onload = () => {
+  renderTabs();
+  load();
 };
-
-// init
-newTab();
