@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Mini Browser Beta+</title>
+  <title>Mini Browser Beta</title>
   <link rel="stylesheet" href="style.css">
 </head>
 
@@ -10,19 +10,14 @@
 <div id="browser">
 
   <div id="topbar">
-    <div id="logo">◉</div>
-
-    <input id="url" placeholder="Search or enter URL..." />
-
+    <input id="url" placeholder="Enter URL..." />
     <button onclick="go()">Go</button>
-    <button onclick="newTab()">+</button>
+    <button onclick="newTab()">+ Tab</button>
   </div>
 
   <div id="tabs"></div>
 
-  <div id="content">
-    <iframe id="view"></iframe>
-  </div>
+  <iframe id="view"></iframe>
 
 </div>
 
