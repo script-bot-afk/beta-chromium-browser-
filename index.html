@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Mini Browser Beta+</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div id="browser">
+
+  <div id="topbar">
+    <div id="logo">◉</div>
+
+    <input id="url" placeholder="Search or enter URL..." />
+
+    <button onclick="go()">Go</button>
+    <button onclick="newTab()">+</button>
+  </div>
+
+  <div id="tabs"></div>
+
+  <div id="content">
+    <iframe id="view"></iframe>
+  </div>
+
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
